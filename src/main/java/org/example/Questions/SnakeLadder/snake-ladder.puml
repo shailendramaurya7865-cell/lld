@@ -1,0 +1,59 @@
+@startuml
+
+class Game {
+    - Board board
+    - Dice dice
+    - Deque<Player> players
+    - Player winner
+
+    + initializeGame()
+    + startGame()
+}
+
+class Board {
+    - Cell[][] cells
+    - int boardSize
+    - int snakeCount
+    - int ladderCount
+
+    + getCell()
+}
+
+class Dice {
+    - int diceCount
+    - int min
+    - int max
+
+    + rollDice()
+}
+
+class Player {
+    - String playerId
+    - int currentPosition
+}
+
+class Cell {
+    - int number
+    - Jump jump
+}
+
+abstract class Jump {
+    - int start
+    - int end
+}
+
+class Snake
+class Ladder
+
+Game *-- Board
+Game *-- Dice
+Game o-- Player
+
+Board *-- Cell
+
+Cell o-- Jump
+
+Snake --|> Jump
+Ladder --|> Jump
+
+@enduml
